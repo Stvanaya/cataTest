@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "outDir": "build/lib",
     "lib": [
       "dom",
       "dom.iterable",
@@ -16,7 +17,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "rootDirs": ["components", "stories"],
+    "sourceMap": true,
+    "baseUrl": "src",
+    "noUnusedLocals": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules"
@@ -24,6 +33,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx", "components/atoms/-divider/divider.stories.js", "components/atoms/LinkM/LinkM.stories.js"
   ]
 }

@@ -1,0 +1,22 @@
+.text {
+  font-size: $theme-font-size-sm;
+  text-align: left;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.text-small {
+  font-size: $theme-font-size-xs;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: $theme-font-bold;
+}
+
+.text-secondary {
+  color: $theme-color-gray;
+}

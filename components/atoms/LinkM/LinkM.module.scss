@@ -1,0 +1,17 @@
+.link {
+  font-weight: $theme-font-bold;
+  font-size: $theme-font-size-xs;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+
+  &:hover {
+    color: $theme-color-primary;
+  }
+};
+
+.link-active {
+  @extend .link;
+  color: $theme-color-primary;
+}
