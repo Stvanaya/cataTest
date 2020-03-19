@@ -8,6 +8,7 @@
   background-color: $theme-color-white;
   border-radius: $theme-misc-bRadius;
   transition: .2s ease-in-out;
+  box-shadow: 0 10px 10px 0 rgba(32, 26, 66, 0.03);
   will-change: box-shadow;
   cursor: pointer;
   padding: 15px 10px;

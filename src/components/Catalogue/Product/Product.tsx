@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Card from '../../atoms/Card/Card';
-import Text from '../../atoms/Text/Text';
-import Image from '../../atoms/Image/Image';
+import Card from '../../shared/Card/Card';
+import Text from '../../shared/Text/Text';
+import Image from '../../shared/Image/Image';
 
 import { ProductProps } from '../../../interfaces/product';
 

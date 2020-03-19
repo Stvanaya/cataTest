@@ -1,11 +1,9 @@
-@import 'theme/_theme.scss';
-
 .product-list {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 
   > div {
-    margin: 15px 20px;
+    margin: 15px 10px;
   }
 }

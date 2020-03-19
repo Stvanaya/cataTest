@@ -1,11 +1,19 @@
+
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import Header from './components/organisms/Header/Header';
+import Header from './components/shared/Header/Header';
+import Router from './router/Router';
 
-function App() {
+import './app.module.scss';
+
+const App: React.FC = () => {
   return (
-    <Header />
+    <BrowserRouter>
+      <Header />
+      <Router />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

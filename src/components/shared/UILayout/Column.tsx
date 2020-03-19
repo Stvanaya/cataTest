@@ -13,7 +13,7 @@ const Column: React.FC<ColumnProps> = ({
   children
 }) => {
 
-  const classes = cx({
+  const classes = cx(styles.column, {
     [styles['col-1']]: cols === 1,
     [styles['col-2']]: cols === 2,
     [styles['col-3']]: cols === 3,

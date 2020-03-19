@@ -5,11 +5,11 @@ import { ProductProps } from '../../../interfaces/product';
 
 import styles from './productList.module.scss';
 
-interface ProductsListProps {
+interface ProductListProps {
   products: ProductProps[];
 };
 
-const ProductsList: React.FC<ProductsListProps> = ({
+const ProductList: React.FC<ProductListProps> = ({
   products
 }) => {
   return (
@@ -26,4 +26,4 @@ const ProductsList: React.FC<ProductsListProps> = ({
   );
 };
 
-export default ProductsList;
+export default ProductList;

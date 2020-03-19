@@ -1,14 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-interface indexProps {
+import Catalogue from '../components/Catalogue/Catalogue';
 
-}
-
-const Router: React.FC<indexProps> = ({}) => {
+const Router: React.FC = () => {
     return (
       <Switch>
-        <Route />
+        <Route path="/" exact strict component={Catalogue}/>
       </Switch>
     );
 };

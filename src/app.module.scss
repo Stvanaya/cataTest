@@ -1,0 +1,9 @@
+@import 'theme/theme';
+
+body {
+  background-color: #fafafa;
+  font-family: $theme-font-family;
+  font-size: $theme-font-root-size;
+  color: $theme-color-navy;
+  padding-top: 60px;
+}

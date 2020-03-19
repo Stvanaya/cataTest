@@ -11,7 +11,7 @@ $theme-font-family: 'Montserrat', sans-serif;
 $theme-font-bold: 700;
 $theme-font-rgl: 400;
 $theme-font-root-size: 16px;
-$theme-font-size-xs: .85em;
+$theme-font-size-xs: .7em;
 $theme-font-size-sm: 1em;
 $theme-font-size-md: 1.6em;
 $theme-font-size-lg: 2.2em;
@@ -27,11 +27,4 @@ $theme-misc-bRadius: 5px;
 
 @mixin calcFullWidth($width, $paddingHor) {
   width: calc($width - ($paddingHor * 2));
-}
-
-body {
-  font-family: $theme-font-family;
-  font-size: $theme-font-root-size;
-  color: $theme-color-navy;
-  padding-top: 60px;
 }

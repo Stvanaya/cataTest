@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Column from '../../atoms/UILayout/Column';
-import Title from '../../atoms/Title/Title';
-import Text from '../../atoms/Text/Text';
+import Column from '../UILayout/Column';
+import Title from '../Title/Title';
+import Text from '../Text/Text';
 
 import styles from './banner.module.scss';
 
