@@ -18,10 +18,15 @@ const Catalogue: React.FC<CatalogueProps> = () => {
         <Column>
           <Banner />
         </Column>
-        <Column lg={12}>
+        <Column
+          customCss={{
+            marginBottom: '20px',
+            marginTop: '20px'
+          }}
+        >
           <Title>Alimentación</Title>
         </Column>
-        <Column lg={12}>
+        <Column>
           <ProductList products={products}/>
         </Column>
       </Grid>

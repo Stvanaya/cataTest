@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, CSSProperties } from 'react';
 import cx from 'classnames';
 
 import styles from './column.module.scss';
@@ -11,6 +11,7 @@ interface ColumnProps {
   md?: ColumnRange | null;
   lg?: ColumnRange | null;
   xlg?: ColumnRange | null;
+  customCss?: CSSProperties | undefined;
   children?: ReactNode;
 };
 
@@ -20,6 +21,7 @@ const Column: React.FC<ColumnProps> = ({
   md,
   lg,
   xlg,
+  customCss,
   children
 }) => {
 
@@ -35,6 +37,7 @@ const Column: React.FC<ColumnProps> = ({
   return (
     <div
       className={classes}
+      style={customCss}
     >
       {children}
     </div>
@@ -46,7 +49,8 @@ Column.defaultProps = {
   sm: null,
   md: null,
   lg: null,
-  xlg: null
+  xlg: null,
+  customCss: undefined
 };
 
 export default Column;
