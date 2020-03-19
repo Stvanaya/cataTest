@@ -12,8 +12,12 @@ const Header: React.FC<Object> = () => {
     <header
       className={styles.header}
     >
-      <Grid>
-        <Column cols={2}>
+      <Grid
+        customCss={{
+          height: '60px'
+        }}
+      >
+        <Column lg={2}>
           <Image
             src="https://secureservercdn.net/198.71.233.179/38c.d4c.myftpupload.com/wp-content/uploads/2020/02/logo.png?time=1584061552"
             alt="muni-logo"

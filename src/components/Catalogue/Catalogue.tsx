@@ -12,16 +12,16 @@ interface CatalogueProps {
 
 };
 
-const Catalogue: React.FC<CatalogueProps> = ({}) => {
+const Catalogue: React.FC<CatalogueProps> = () => {
     return (
       <Grid>
-        <Column cols={12}>
+        <Column>
           <Banner />
         </Column>
-        <Column cols={12}>
+        <Column lg={12}>
           <Title>Alimentación</Title>
         </Column>
-        <Column cols={12}>
+        <Column lg={12}>
           <ProductList products={products}/>
         </Column>
       </Grid>

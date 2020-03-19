@@ -15,7 +15,7 @@ const Product: React.FC<ProductProps> = ({
     <Card isSmall>
       <Image src={imageUrl} alt="Product Alt"/>
       <Text isSmall centerAlign>{name}</Text>
-      <Text isSmall centerAlign isBold>{price}</Text>
+      <Text centerAlign isBold>{price}</Text>
     </Card>
   );
 };

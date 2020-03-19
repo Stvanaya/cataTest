@@ -2,7 +2,7 @@
 
 .title {
   font-weight: $theme-font-bold;
-  font-size: $theme-font-size-lg;
+  font-size: $theme-font-size-xlg;
   margin: 0;
 }
 
@@ -12,4 +12,16 @@
 
 .title-center {
   text-align: center;
+}
+
+
+/* Extra Small Devices */
+@media (max-width: 576.98px) {
+  .title {
+    font-size: $theme-font-size-lg;
+  }
+
+  .title-small {
+    font-size: $theme-font-size-xmd;
+  }
 }

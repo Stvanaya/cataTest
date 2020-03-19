@@ -1,9 +1,7 @@
 @import 'theme/_theme.scss';
 
 .banner {
-  $padding-horizontal: 30px;
-
-  @include calcFullWidth (100%, $padding-horizontal);
+  @include calcFullWidth (100%, 30px);
   max-height: 200px;
   display: flex;
   flex-direction: column;
@@ -12,7 +10,7 @@
   border-radius: $theme-misc-bRadius;
   box-shadow: 0 10px 10px 0 rgba(0, 212, 200, 0.16);
   background-color: $theme-color-primary;
-  padding: 30px $padding-horizontal;
+  padding: 30px 30px;
   margin: 30px 0;
 
   p {
@@ -24,5 +22,17 @@
   h1 {
     color: $theme-color-white;
     width: 80%;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 576.98px) {
+  .banner {
+    @include calcFullWidth (100%, 12px);
+    padding: 30px 12px;
+
+    p, h1 {
+      width: 100%;
+    }
   }
 }

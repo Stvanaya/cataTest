@@ -1,0 +1,7 @@
+@mixin defineColumns ($minCol, $maxCol, $breakpoint) {
+  @for $i from $minCol through $maxCol {
+    .col-#{$breakpoint}-#{$i} {
+      grid-column: span #{$i} !important;
+    }
+  }
+}

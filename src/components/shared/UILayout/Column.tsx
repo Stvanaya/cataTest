@@ -3,29 +3,33 @@ import cx from 'classnames';
 
 import styles from './column.module.scss';
 
+type ColumnRange = 1|2|3|4|5|6|7|8|9|10|11|12;
+
 interface ColumnProps {
-  cols: number;
-  children: ReactNode;
+  xs?: ColumnRange | null;
+  sm?: ColumnRange | null;
+  md?: ColumnRange | null;
+  lg?: ColumnRange | null;
+  xlg?: ColumnRange | null;
+  children?: ReactNode;
 };
 
 const Column: React.FC<ColumnProps> = ({
-  cols,
+  xs,
+  sm,
+  md,
+  lg,
+  xlg,
   children
 }) => {
 
   const classes = cx(styles.column, {
-    [styles['col-1']]: cols === 1,
-    [styles['col-2']]: cols === 2,
-    [styles['col-3']]: cols === 3,
-    [styles['col-4']]: cols === 4,
-    [styles['col-5']]: cols === 5,
-    [styles['col-6']]: cols === 6,
-    [styles['col-7']]: cols === 7,
-    [styles['col-8']]: cols === 8,
-    [styles['col-9']]: cols === 9,
-    [styles['col-10']]: cols === 10,
-    [styles['col-11']]: cols === 11,
-    [styles['col-12']]: cols === 12
+    [styles['col-df']]: !xs || !sm || !md || !lg || !xlg,
+    [styles[`col-xs-${xs}`]]: xs,
+    [styles[`col-sm-${sm}`]]: sm,
+    [styles[`col-md-${md}`]]: md,
+    [styles[`col-lg-${lg}`]]: lg,
+    [styles[`col-xl-${xlg}`]]: xlg,
   });
 
   return (
@@ -35,6 +39,14 @@ const Column: React.FC<ColumnProps> = ({
       {children}
     </div>
   );
+};
+
+Column.defaultProps = {
+  xs: null,
+  sm: null,
+  md: null,
+  lg: null,
+  xlg: null
 };
 
 export default Column;
