@@ -1,0 +1,25 @@
+@import 'theme/_theme.scss';
+
+.btn {
+  font-weight: $theme-font-bold;
+  font-size: $theme-font-size-xs;
+  padding: 8px 15px;
+  min-width: 100px;
+  border: none;
+  border-radius: $theme-misc-bRadius;
+  cursor: pointer;
+}
+
+.btn-primary {
+  @extend .btn;
+  color: $theme-color-white;
+  box-shadow: $theme-shadow-aquamarine;
+  background-color: $theme-color-primary;
+}
+
+.btn-secondary {
+  @extend .btn;
+  color: $theme-color-primary;
+  background-color: $theme-color-iceBlue;
+  box-shadow: none;
+}

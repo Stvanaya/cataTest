@@ -1,0 +1,9 @@
+@import 'theme/_theme.scss';
+
+.grid {
+  display: grid;
+  grid-template-columns: $theme-grid-cols-lg;
+  grid-template-rows: auto;
+  grid-template-areas: $theme-grid-cols-areas;
+  justify-content: center;
+}
