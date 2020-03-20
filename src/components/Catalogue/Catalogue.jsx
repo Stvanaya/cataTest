@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import Grid from '../shared/UILayout/Grid';
 import Column from '../shared/UILayout/Column';
 import Banner from '../shared/Banner/Banner';
-import ProductList from './ProductsList/ProductsList';
+import ProductList from './ProductsList/ProductsList.jsx';
 import Title from '../shared/Title/Title';
 
 /* REQUESTS */
@@ -51,7 +51,7 @@ const Catalogue = () => {
 
   let content = (
     <Column>
-      <ProductList products={prices}/>
+      <ProductList products={prices.slice(0, 20)}/>
     </Column>
   );
 

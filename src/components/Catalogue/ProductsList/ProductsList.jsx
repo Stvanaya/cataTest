@@ -1,15 +1,13 @@
 import React from 'react';
 
 import Product from '../Product/Product';
-import { ProductProps } from '../../../interfaces/product';
+
+/* UTILS */
+import calcProductPrice from '../../../utils/calcProductPrice';
 
 import styles from './productList.module.scss';
 
-interface ProductListProps {
-  products: ProductProps[];
-};
-
-const ProductList: React.FC<ProductListProps> = ({
+const ProductList = ({
   products
 }) => {
   return (
@@ -20,7 +18,7 @@ const ProductList: React.FC<ProductListProps> = ({
             key={product.uuid}
             default_image={product.default_image}
             name={product.name}
-            price="$90.000"
+            price={calcProductPrice(product)}
           />)
       }
     </div>

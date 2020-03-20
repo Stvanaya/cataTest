@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Level 2: Architecture diagram
+![C4 Level 2 - Key-Pass](adr/architecture.svg?sanitize=true)
 
 ## Available Scripts
 
