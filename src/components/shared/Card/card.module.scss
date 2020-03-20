@@ -23,6 +23,13 @@
   padding: 15px 10px;
 }
 
+.card-flex-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* Extra Small Devices */
 @media (max-width: 576.98px) {
   .card-small {

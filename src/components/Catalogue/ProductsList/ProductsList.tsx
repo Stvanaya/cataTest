@@ -16,10 +16,11 @@ const ProductList: React.FC<ProductListProps> = ({
     <div className={styles['product-list']}>
       {
         products.map(product => 
-          <Product 
-            imageUrl={product.imageUrl}
+          <Product
+            key={product.uuid}
+            default_image={product.default_image}
             name={product.name}
-            price={product.price}
+            price="$90.000"
           />)
       }
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Catalogue from '../components/Catalogue/Catalogue';
+import Catalogue from '../components/Catalogue/Catalogue.jsx';
 
 const Router: React.FC = () => {
     return (

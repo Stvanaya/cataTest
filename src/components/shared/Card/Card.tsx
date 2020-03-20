@@ -6,15 +6,18 @@ import styles from './card.module.scss';
 interface CardProps {
   children: ReactNode;
   isSmall?: boolean;
+  flexAlign?: boolean;
 };
 
 const Card: React.FC<CardProps> = ({
   isSmall,
+  flexAlign,
   children
 }) => {
 
   const classes = cx(styles.card, {
-    [styles['card-small']]: isSmall
+    [styles['card-small']]: isSmall,
+    [styles['card-flex-align']]: flexAlign
   });
 
   return (
@@ -27,7 +30,8 @@ const Card: React.FC<CardProps> = ({
 };
 
 Card.defaultProps = {
-  isSmall: false
+  isSmall: false,
+  flexAlign: false
 };
 
 export default Card;

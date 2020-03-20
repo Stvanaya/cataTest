@@ -1,5 +1,6 @@
 export interface ProductProps {
+  uuid?: string;
   name: string;
   price: string;
-  imageUrl: string;
+  default_image: string;
 };
