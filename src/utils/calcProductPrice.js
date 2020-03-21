@@ -1,15 +1,25 @@
 const calcProductPrice = (product) => {
-  console.log(product, 'PRODUCTO');
   const {
-    product_content,
-    unit_of_measure
-  } = product.fields;
-  const { price } = product;
+    purchase_type,
+    price,
+    limits
+  } = product;
 
-  if (unit_of_measure.value === 'u')
-    return new Intl.NumberFormat('en-US')
-      .format(Number(price.unit))
-      .replace(',', '.')
+  if (purchase_type === 'u') {
+    const pricePerUnit = Number(price.unit) * Number(limits.min);
+    return formatMoney(pricePerUnit);
+  }
+
+  if (purchase_type === 'w') {
+    const pricePerWeight = Number(price.weight) * Number(limits.min);
+    return formatMoney(pricePerWeight);
+  }
+};
+
+const formatMoney = (price) => {
+  return new Intl.NumberFormat('en-US')
+    .format(price)
+    .replace(',', '.');
 };
 
 export default calcProductPrice;
