@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Title from 'components/shared/Title/Title';
-import Text from 'components/shared/Text/Text';
+import Title from 'components/DesignSystem/Title/Title';
+import Text from 'components/DesignSystem/Text/Text';
 
 import styles from './banner.module.scss';
 

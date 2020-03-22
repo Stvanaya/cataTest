@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Grid from 'components/shared/UILayout/Grid';
-import Column from 'components/shared/UILayout/Column';
-import Image from 'components/shared/Image/Image';
+import Grid from 'components/DesignSystem/UILayout/Grid';
+import Column from 'components/DesignSystem/UILayout/Column';
+import Image from 'components/DesignSystem/Image/Image';
 
 import styles from './header.module.scss';
 

@@ -6,7 +6,7 @@ import styles from './button.module.scss';
 interface ButtonProps {
   isSecondary?: boolean;
   clickHandler?: any;
-};
+}
 
 const Button: React.FC<ButtonProps> = ({
   isSecondary,
@@ -20,18 +20,14 @@ const Button: React.FC<ButtonProps> = ({
   });
 
   return (
-    <button
-      className={classes}
-      onClick={clickHandler}
-      {...props}
-    >
+    <button className={classes} onClick={clickHandler} {...props}>
       {children}
     </button>
   );
 };
 
 Button.defaultProps = {
-  isSecondary: false
+  isSecondary: false,
 };
 
 export default Button;

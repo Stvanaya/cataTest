@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Card from 'components/shared/Card/Card';
-import Text from 'components/shared/Text/Text';
-import Image from 'components/shared/Image/Image';
+import Card from 'components/DesignSystem/Card/Card';
+import Text from 'components/DesignSystem/Text/Text';
+import Image from 'components/DesignSystem/Image/Image';
 
 interface ProductProps {
   name: string;
