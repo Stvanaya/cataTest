@@ -1,26 +1,23 @@
 import React from 'react';
 
-import Product from '../Product/Product';
+import Product from 'components/Catalogue/Product/Product';
 
 /* UTILS */
-import calcProductPrice from '../../../utils/calcProductPrice';
+import calcProductPrice from 'utils/calcProductPrice';
 
 import styles from './productList.module.scss';
 
-const ProductList = ({
-  products
-}) => {
+const ProductList = ({ products }) => {
   return (
     <div className={styles['product-list']}>
-      {
-        products.map(product => 
-          <Product
-            key={product.uuid}
-            default_image={product.default_image}
-            name={product.name}
-            price={calcProductPrice(product)}
-          />)
-      }
+      {products.map(product => (
+        <Product
+          key={product.uuid}
+          default_image={product.default_image}
+          name={product.name}
+          price={calcProductPrice(product)}
+        />
+      ))}
     </div>
   );
 };
