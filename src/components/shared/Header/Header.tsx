@@ -1,20 +1,17 @@
 import React from 'react';
 
-import Grid from '../UILayout/Grid';
-import Column from '../UILayout/Column';
-import Image from '../Image/Image';
-
+import Grid from 'components/shared/UILayout/Grid';
+import Column from 'components/shared/UILayout/Column';
+import Image from 'components/shared/Image/Image';
 
 import styles from './header.module.scss';
 
 const Header: React.FC<Object> = () => {
   return (
-    <header
-      className={styles.header}
-    >
+    <header className={styles.header}>
       <Grid
         customCss={{
-          height: '60px'
+          height: '60px',
         }}
       >
         <Column lg={2}>
