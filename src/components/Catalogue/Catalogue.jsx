@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import Grid from 'components/shared/UILayout/Grid';
-import Column from 'components/shared/UILayout/Column';
-import Banner from 'components/shared/Banner/Banner';
+import Grid from 'components/DesignSystem/UILayout/Grid';
+import Column from 'components/DesignSystem/UILayout/Column';
+import Banner from 'components/DesignSystem/Banner/Banner';
 import ProductList from 'components/Catalogue/ProductsList/ProductsList';
-import Title from 'components/shared/Title/Title';
+import Title from 'components/DesignSystem/Title/Title';
 
 /* REQUESTS */
 import { getPrices, getProducts, getVendors } from '../../request/cataApi';
