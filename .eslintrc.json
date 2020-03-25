@@ -23,7 +23,13 @@
     "react": {
       "pragma": "React",
       "version": "detect"
+    },
+    "parser": "typescript-eslint-parser",
+    "plugins": [
+      "import"
+    ],
+    "import/resolver": {
+      "typescript": {}
     }
-  },
-  "parser": "@typescript-eslint/parser"
+  }
 }
