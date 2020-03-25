@@ -3,6 +3,7 @@
 .banner {
   @include calcFullWidth(100%, 30px);
   max-height: 200px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
