@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Product from 'components/Catalogue/Product/Product';
+import Product from 'Components/Product/Product';
 
 /* UTILS */
 import calcProductPrice from 'utils/calcProductPrice';

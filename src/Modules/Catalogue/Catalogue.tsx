@@ -1,19 +1,26 @@
-/* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import Grid from 'components/DesignSystem/UILayout/Grid';
-import Column from 'components/DesignSystem/UILayout/Column';
-import Banner from 'components/DesignSystem/Banner/Banner';
-import ProductList from 'components/Catalogue/ProductsList/ProductsList';
-import Title from 'components/DesignSystem/Title/Title';
+import Grid from 'DS/UILayout/Grid';
+import Column from 'DS/UILayout/Column';
+import Banner from 'Components/Banner/Banner';
+import ProductList from 'Components/ProductsList/ProductsList.jsx';
+import Title from 'DS/Title/Title';
 
 /* REQUESTS */
 import { getPrices, getProducts, getVendors } from '../../request/cataApi';
 
-const Catalogue = () => {
-  const [vendors, setVendors] = useState([]);
-  const [prices, setPrices] = useState([]);
+interface VendorsI {
+  uuid: string;
+}
+
+interface ProductsI {
+  uuid: string;
+}
+
+const Catalogue: React.FC = () => {
+  const [vendors, setVendors] = useState<VendorsI[]>([]);
+  const [prices, setPrices] = useState<ProductsI[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,18 +38,20 @@ const Catalogue = () => {
 
       async function loadPrices() {
         if (vendors.length) {
-          const { data: prices } = await getPrices(
+          const { data: pricesRes } = await getPrices(
             `vendor/${vendors[0].uuid}/prices`,
           );
 
-          const mergedProducts = products.map(product => {
-            return Object.assign(
-              product,
-              prices.find(price => {
-                return product.uuid === price.uuid;
-              }),
-            );
-          });
+          const mergedProducts = (products as Array<{ uuid: string }>).map(
+            product => {
+              return Object.assign(
+                product,
+                (pricesRes as Array<{ uuid: string }>).find(price => {
+                  return product.uuid === price.uuid;
+                }),
+              );
+            },
+          );
 
           setPrices(mergedProducts);
           setLoading(false);

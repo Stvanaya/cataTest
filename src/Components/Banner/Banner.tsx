@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Title from 'components/DesignSystem/Title/Title';
+import Title from 'DS/Title/Title';
 
 import bannerImage from 'assets/BG_desktop.jpg';
 

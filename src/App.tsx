@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Header from 'components/DesignSystem/Header/Header';
-import Router from 'router/Router';
+import Header from 'DS/Header/Header';
+import Router from 'Pages/index';
 
 import './app.module.scss';
 

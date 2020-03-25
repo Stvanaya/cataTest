@@ -17,7 +17,8 @@
     "jest": true
   },
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": true }]
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "arrow-parens": "off"
   },
   "settings": {
     "react": {
