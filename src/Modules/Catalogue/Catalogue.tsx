@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import Grid from 'DS/UILayout/Grid';
-import Column from 'DS/UILayout/Column';
+/* COMPONENTS */
+import Grid from 'DS/Layout/Grid';
+import Column from 'DS/Layout/Column';
 import Banner from 'Components/Banner/Banner';
-import ProductList from 'Components/ProductsList/ProductsList.jsx';
+import ProductList from 'Components/ProductsList/ProductList';
 import Title from 'DS/Title/Title';
+
+/* TYPES */
+import ProductType, { ProductPrice } from 'types/product';
+import VendorType from 'types/vendors';
 
 /* REQUESTS */
 import { getPrices, getProducts, getVendors } from '../../request/cataApi';
 
-interface VendorsI {
-  uuid: string;
-}
-
-interface ProductsI {
-  uuid: string;
-}
-
 const Catalogue: React.FC = () => {
-  const [vendors, setVendors] = useState<VendorsI[]>([]);
-  const [prices, setPrices] = useState<ProductsI[]>([]);
+  const [vendors, setVendors] = useState<VendorType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +31,7 @@ const Catalogue: React.FC = () => {
 
   useEffect(() => {
     async function loadProducts() {
-      const { data: products } = await getProducts('product');
+      const { data: productsRes } = await getProducts('product');
 
       async function loadPrices() {
         if (vendors.length) {
@@ -42,18 +39,17 @@ const Catalogue: React.FC = () => {
             `vendor/${vendors[0].uuid}/prices`,
           );
 
-          const mergedProducts = (products as Array<{ uuid: string }>).map(
-            product => {
-              return Object.assign(
+          const mergedProducts = (productsRes as Array<ProductType>).map(
+            product =>
+              Object.assign(
                 product,
-                (pricesRes as Array<{ uuid: string }>).find(price => {
-                  return product.uuid === price.uuid;
-                }),
-              );
-            },
+                (pricesRes as Array<ProductPrice>).find(
+                  price => product.uuid === price.uuid,
+                ),
+              ),
           );
 
-          setPrices(mergedProducts);
+          setProducts(mergedProducts);
           setLoading(false);
         }
       }
@@ -65,14 +61,14 @@ const Catalogue: React.FC = () => {
 
   let content = (
     <Column>
-      <ProductList products={prices.slice(0, 20)} />
+      <ProductList products={products.slice(0, 20)} />
     </Column>
   );
 
   if (loading) {
     content = (
       <Column
-        customCss={{
+        style={{
           marginTop: '20px',
         }}
       >
@@ -83,11 +79,11 @@ const Catalogue: React.FC = () => {
 
   return (
     <Grid>
-      <Column>
+      <Column lg={12}>
         <Banner />
       </Column>
       <Column
-        customCss={{
+        style={{
           marginBottom: '20px',
           marginTop: '20px',
         }}

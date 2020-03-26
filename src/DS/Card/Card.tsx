@@ -1,37 +1,46 @@
-import React, { ReactNode } from 'react';
-import cx from 'classnames';
-
-import styles from './card.module.scss';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import styled, { css } from 'styled-components';
 
 interface CardProps {
-  children: ReactNode;
-  isSmall?: boolean;
-  flexAlign?: boolean;
-};
+  flexVerAlign?: boolean;
+}
 
-const Card: React.FC<CardProps> = ({
-  isSmall,
-  flexAlign,
-  children
-}) => {
+const flexVerticalAlign = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+`;
 
-  const classes = cx(styles.card, {
-    [styles['card-small']]: isSmall,
-    [styles['card-flex-align']]: flexAlign
-  });
+const Card = styled.div<CardProps>`
+  ${({ flexVerAlign }) => (flexVerAlign ? flexVerticalAlign : false)};
 
-  return (
-    <div
-      className={classes}
-    >
-      {children}
-    </div>
-  );
-};
+  width: calc(100% - 30px);
+  height: auto;
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.misc.bRadius};
+  transition: 0.2s ease-in-out;
+  will-change: box-shadow;
+  box-shadow: 0 10px 10px 0 rgba(32, 26, 66, 0.03);
+  cursor: pointer;
+  padding: 15px 10px;
 
-Card.defaultProps = {
-  isSmall: false,
-  flexAlign: false
-};
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadow.card};
+  }
+`;
+
+export const SmallCard = styled(Card)`
+  width: 120px;
+  min-height: 150px;
+  padding: 15px 10px;
+
+  /* Extra Small Devices */
+  @media (max-width: 576.98px) {
+    & {
+      padding: 15px 0;
+    }
+  }
+`;
 
 export default Card;

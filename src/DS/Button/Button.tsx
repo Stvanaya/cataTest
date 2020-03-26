@@ -1,33 +1,30 @@
-import React from 'react';
-import cx from 'classnames';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import styled from 'styled-components';
 
-import styles from './button.module.scss';
+const Button = styled.button`
+  font-family: ${({ theme }) => theme.font.family};
+  font-weight: ${({ theme }) => theme.font.bold};
+  font-size: ${({ theme }) => theme.font.sizeXS};
+  padding: 10px 15px;
+  min-width: 100px;
+  border: none;
+  border-radius: ${({ theme }) => theme.misc.bRadius};
+  cursor: pointer;
 
-interface ButtonProps {
-  isSecondary?: boolean;
-  clickHandler?: any;
-}
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
 
-const Button: React.FC<ButtonProps> = ({
-  isSecondary,
-  clickHandler,
-  children,
-  ...props
-}) => {
-  const classes = cx(styles.btn, {
-    [styles['btn-primary']]: !isSecondary,
-    [styles['btn-secondary']]: isSecondary,
-  });
+export const ButtonPrimary = styled(Button)`
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.primary};
+  box-shadow: ${({ theme }) => theme.shadow.aqua};
+`;
 
-  return (
-    <button className={classes} onClick={clickHandler} {...props}>
-      {children}
-    </button>
-  );
-};
-
-Button.defaultProps = {
-  isSecondary: false,
-};
+export const ButtonSecondary = styled(Button)`
+  color: ${({ theme }) => theme.color.primary};
+  background-color: ${({ theme }) => theme.color.iceBlue};
+`;
 
 export default Button;

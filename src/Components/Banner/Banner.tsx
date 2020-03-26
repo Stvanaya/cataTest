@@ -1,23 +1,20 @@
 import React from 'react';
 
-import Title from 'DS/Title/Title';
+import { TitleH2 } from 'DS/Title/Title';
 
 import bannerImage from 'assets/BG_desktop.jpg';
 
-import styles from './banner.module.scss';
+import BannerStyles from './Banner.styles';
 
 interface BannerProps {}
 
 const Banner: React.FC<BannerProps> = () => {
   return (
-    <article
-      className={styles.banner}
-      style={{ backgroundImage: `url(${bannerImage})` }}
-    >
-      <Title isSmall isCenterAlign>
+    <BannerStyles bgUrl={bannerImage}>
+      <TitleH2>
         Productos de la mayor calidad a los mejores precios
-      </Title>
-    </article>
+      </TitleH2>
+    </BannerStyles>
   );
 };
 

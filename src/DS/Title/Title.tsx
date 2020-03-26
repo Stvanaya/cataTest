@@ -1,34 +1,29 @@
-import React, { ReactNode } from 'react';
-import cx from 'classnames';
-
-import styles from './Title.module.scss';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import styled from 'styled-components';
 
 interface TitleProps {
-  isSmall?: boolean;
-  isCenterAlign?: boolean;
-  children: ReactNode;
-};
+  margin?: string;
+}
 
-const Title: React.FC<TitleProps> = ({
-  isSmall,
-  isCenterAlign,
-  children
-}) => {
-  const classes = cx(styles.title, {
-    [styles['title-small']]: isSmall,
-    [styles['title-center']]: isCenterAlign
-  });
+const Title = styled.h1<TitleProps>`
+  font-family: ${({ theme }) => theme.font.family};
+  font-size: ${({ theme }) => theme.font.sizeXLG};
+  color: ${({ theme }) => theme.color.navy};
+  margin: ${p => p.margin || '0px'};
 
-  return (
-    <h1 className={classes}>
-      {children}
-    </h1>
-  );
-};
+  @media (max-width: 576.98px) {
+    font-size: ${({ theme }) => theme.font.sizeLG};
+  }
+`;
 
-Title.defaultProps = {
-  isSmall: false,
-  isCenterAlign: false
-};
+export const TitleH2 = styled(Title).attrs(() => ({
+  as: 'h2',
+}))`
+  font-size: ${({ theme }) => theme.font.sizeLG};
+
+  @media (max-width: 576.98px) {
+    font-size: ${({ theme }) => theme.font.sizeXMD};
+  }
+`;
 
 export default Title;

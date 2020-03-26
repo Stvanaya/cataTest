@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Card from 'DS/Card/Card';
-import Text from 'DS/Button/Text/Text';
+import { SmallCard } from 'DS/Card/Card';
+import Text, { SmallText } from 'DS/Text/Text';
 import Image from 'DS/Image/Image';
 
 interface ProductProps {
@@ -12,25 +12,22 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = props => {
   return (
-    <Card isSmall flexAlign>
+    <SmallCard flexVerAlign>
       <Image
         src={props.default_image}
         alt="Product Alt"
         width="70px"
         height="70px"
-        customCss={{
-          objectFit: 'contain',
-        }}
       />
       <div>
-        <Text isSmall centerAlign>
+        <SmallText align="center">
           {props.name}
-        </Text>
-        <Text centerAlign isBold>
+        </SmallText>
+        <Text align="center" isBold>
           ${props.price}
         </Text>
       </div>
-    </Card>
+    </SmallCard>
   );
 };
 

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Grid from 'DS/UILayout/Grid';
-import Column from 'DS/UILayout/Column';
+import Grid from 'DS/Layout/Grid';
+import Column from 'DS/Layout/Column';
 import Image from 'DS/Image/Image';
 
-import styles from './header.module.scss';
+import HeaderStyles from './Header.styles';
 
-const Header: React.FC<Object> = () => {
+const Header: React.FC = () => {
   return (
-    <header className={styles.header}>
+    <HeaderStyles>
       <Grid
-        customCss={{
+        style={{
           height: '60px',
         }}
       >
@@ -23,7 +23,7 @@ const Header: React.FC<Object> = () => {
           />
         </Column>
       </Grid>
-    </header>
+    </HeaderStyles>
   );
 };
 

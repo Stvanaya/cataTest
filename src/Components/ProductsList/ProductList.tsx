@@ -1,15 +1,24 @@
 import React from 'react';
 
+/* COMPONENTS */
 import Product from 'Components/Product/Product';
 
 /* UTILS */
 import calcProductPrice from 'utils/calcProductPrice';
 
-import styles from './productList.module.scss';
+/* TYPES */
+import ProductType from 'types/product';
 
-const ProductList = ({ products }) => {
+/* STYLES */
+import ProductListStyles from './ProductList.styles';
+
+interface ProductListProps {
+  products: ProductType[];
+}
+
+const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <div className={styles['product-list']}>
+    <ProductListStyles>
       {products.map(product => (
         <Product
           key={product.uuid}
@@ -18,7 +27,7 @@ const ProductList = ({ products }) => {
           price={calcProductPrice(product)}
         />
       ))}
-    </div>
+    </ProductListStyles>
   );
 };
 
