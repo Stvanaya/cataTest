@@ -1,30 +1,60 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const Button = styled.button`
-  font-family: ${({ theme }) => theme.font.family};
-  font-weight: ${({ theme }) => theme.font.bold};
-  font-size: ${({ theme }) => theme.font.sizeXS};
-  padding: 10px 15px;
-  min-width: 100px;
-  border: none;
-  border-radius: ${({ theme }) => theme.misc.bRadius};
-  cursor: pointer;
+type ButtonType = 'primary' | 'secondary';
 
-  &:disabled {
-    cursor: not-allowed;
-  }
-`;
+interface ButtonProps {
+  isSmallText?: boolean;
+  margin?: string;
+  padding?: string;
+  typeBtn: ButtonType;
+  isQuantityBtn?: boolean;
+}
 
-export const ButtonPrimary = styled(Button)`
+const ButtonPrimaryStyles = css`
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.primary};
   box-shadow: ${({ theme }) => theme.shadow.aqua};
 `;
 
-export const ButtonSecondary = styled(Button)`
+const ButtonSecondaryStyles = css`
   color: ${({ theme }) => theme.color.primary};
   background-color: ${({ theme }) => theme.color.iceBlue};
+`;
+
+const ButtonQuantityStyles = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Button = styled.button<ButtonProps>`
+  font-family: ${({ theme }) => theme.font.family};
+  font-weight: ${({ theme }) => theme.font.bold};
+  font-size: ${({ theme, isSmallText }) =>
+    isSmallText ? theme.font.sizeXXS : theme.font.sizeXS};
+  padding: ${({ padding }) => padding || '10px 12px'};
+  margin: ${({ margin }) => margin || '0px'};
+  min-width: 100px;
+  border: none;
+  border-radius: ${({ theme }) => theme.misc.bRadius};
+  outline: none;
+  cursor: pointer;
+
+  ${({ typeBtn }) =>
+    typeBtn === 'primary' ? ButtonPrimaryStyles : ButtonSecondaryStyles};
+  ${({ isQuantityBtn }) => isQuantityBtn && ButtonQuantityStyles};
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme.color.disabledBlue};
+    color: ${({ theme }) => theme.color.white};
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none !important;
+  }
 `;
 
 export default Button;

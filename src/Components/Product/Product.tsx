@@ -1,8 +1,13 @@
 import React from 'react';
 
+/* DS */
 import { SmallCard } from 'DS/Card/Card';
-import Text, { SmallText } from 'DS/Text/Text';
+import { SmallText } from 'DS/Text/Text';
+import Button from 'DS/Button/Button';
 import Image from 'DS/Image/Image';
+
+/* STYLES */
+import ProductContent from './Product.styles';
 
 interface ProductProps {
   name: string;
@@ -19,14 +24,15 @@ const Product: React.FC<ProductProps> = props => {
         width="70px"
         height="70px"
       />
-      <div>
-        <SmallText align="center">
+      <ProductContent>
+        <SmallText align="center" isXXS margin="15px 0 7px 0">
           {props.name}
         </SmallText>
-        <Text align="center" isBold>
+        <SmallText align="center" isBold margin="0 0 10px 0">
           ${props.price}
-        </Text>
-      </div>
+        </SmallText>
+        <Button typeBtn="secondary">Agregar</Button>
+      </ProductContent>
     </SmallCard>
   );
 };

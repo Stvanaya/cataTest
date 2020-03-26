@@ -9,18 +9,26 @@ import ProductList from 'Components/ProductsList/ProductList';
 import Title from 'DS/Title/Title';
 
 /* TYPES */
-import ProductType, { ProductPrice } from 'types/product';
-import VendorType from 'types/vendors';
+import ProductType from 'types/product';
+/* import VendorType from 'types/vendors'; */
+
+/* MOCKS */
+import productsMock from 'mock';
 
 /* REQUESTS */
-import { getPrices, getProducts, getVendors } from '../../request/cataApi';
+/* mport { getPrices, getProducts, getVendors } from '../../request/cataApi'; */
 
 const Catalogue: React.FC = () => {
-  const [vendors, setVendors] = useState<VendorType[]>([]);
+  /* const [vendors, setVendors] = useState<VendorType[]>([]); */
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setProducts(productsMock);
+    setLoading(false);
+  }, []);
+
+  /* useEffect(() => {
     async function loadVendors() {
       const { data } = await getVendors('vendor');
       setVendors(data);
@@ -57,7 +65,7 @@ const Catalogue: React.FC = () => {
       loadPrices();
     }
     loadProducts();
-  }, [vendors]);
+  }, [vendors]); */
 
   let content = (
     <Column>

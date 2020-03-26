@@ -6,6 +6,7 @@ export default {
     teal: '#009f8d',
     vlBlue: '#e6ebf1',
     iceBlue: '#dffffd',
+    disabledBlue: '#a2faf4',
     gray: '#7d8d94',
     white: '#ffffff',
     bg: '#fafafa',
@@ -14,7 +15,8 @@ export default {
     family: 'Montserrat, sans-serif',
     bold: 700,
     rgl: 400,
-    sizeXS: '12px',
+    sizeXXS: '12px',
+    sizeXS: '14px',
     sizeSM: '16px',
     sizeXMD: '20px',
     sizeMD: '22px',
@@ -28,7 +30,7 @@ export default {
   },
   layout: {
     grid: {
-      xs: 'repeat(12, calc(((100vw - 30px) / 12)))',
+      xs: 'repeat(12, calc(((100vw - 20px) / 12)))',
       sm: 'repeat(12, calc(((100vw - 50px) / 12)))',
       md: 'repeat(12, calc(((100vw - 80px) / 12)))',
       lg: 'repeat(12, calc(((100vw - 240px) / 12)))',

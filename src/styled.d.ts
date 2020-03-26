@@ -9,6 +9,7 @@ declare module 'styled-components' {
       teal: string;
       vlBlue: string;
       iceBlue: string;
+      disabledBlue: string;
       gray: string;
       white: string;
       bg: string;
@@ -17,6 +18,7 @@ declare module 'styled-components' {
       family: string;
       bold: number;
       rgl: number;
+      sizeXXS: string;
       sizeXS: string;
       sizeSM: string;
       sizeXMD: string;

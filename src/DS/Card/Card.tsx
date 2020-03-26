@@ -22,7 +22,6 @@ const Card = styled.div<CardProps>`
   transition: 0.2s ease-in-out;
   will-change: box-shadow;
   box-shadow: 0 10px 10px 0 rgba(32, 26, 66, 0.03);
-  cursor: pointer;
   padding: 15px 10px;
 
   &:hover {
@@ -38,7 +37,7 @@ export const SmallCard = styled(Card)`
   /* Extra Small Devices */
   @media (max-width: 576.98px) {
     & {
-      padding: 15px 0;
+      padding: 15px 5px;
     }
   }
 `;

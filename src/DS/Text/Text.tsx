@@ -4,6 +4,9 @@ import styled from 'styled-components';
 interface TextProps {
   align?: string;
   isBold?: boolean;
+  isXXS?: boolean;
+  margin?: string;
+  padding?: string;
 }
 
 const Text = styled.p<TextProps>`
@@ -15,11 +18,13 @@ const Text = styled.p<TextProps>`
   text-align: ${({ align }) => align || 'left'};
   line-height: normal;
   letter-spacing: normal;
-  margin: 8px 10px;
+  margin: ${({ margin }) => margin || '0px'};
+  padding: ${({ padding }) => padding || '0px'};
 `;
 
 export const SmallText = styled(Text)`
-  font-size: ${({ theme }) => theme.font.sizeXS};
+  font-size: ${({ theme, isXXS }) =>
+    isXXS ? theme.font.sizeXXS : theme.font.sizeXS};
 `;
 
 export const TextHighlight = styled(Text)`
