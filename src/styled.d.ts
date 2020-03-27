@@ -42,6 +42,7 @@ declare module 'styled-components' {
     };
     misc: {
       bRadius: string;
+      grayBorder: string;
     };
   }
 }

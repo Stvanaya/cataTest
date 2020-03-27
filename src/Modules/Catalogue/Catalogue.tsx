@@ -2,33 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 /* COMPONENTS */
-import Grid from 'DS/Layout/Grid';
 import Column from 'DS/Layout/Column';
-import Banner from 'Components/Banner/Banner';
 import ProductList from 'Components/ProductsList/ProductList';
 import Title from 'DS/Title/Title';
 
 /* TYPES */
-import ProductType from 'types/product';
-/* import VendorType from 'types/vendors'; */
-
-/* MOCKS */
-import productsMock from 'mock';
+import ProductType, { ProductPrice } from 'types/product';
+import VendorType from 'types/vendors';
 
 /* REQUESTS */
-/* mport { getPrices, getProducts, getVendors } from '../../request/cataApi'; */
+import { getPrices, getProducts, getVendors } from '../../request/cataApi';
 
 const Catalogue: React.FC = () => {
-  /* const [vendors, setVendors] = useState<VendorType[]>([]); */
+  const [vendors, setVendors] = useState<VendorType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setProducts(productsMock);
-    setLoading(false);
-  }, []);
-
-  /* useEffect(() => {
     async function loadVendors() {
       const { data } = await getVendors('vendor');
       setVendors(data);
@@ -65,11 +55,11 @@ const Catalogue: React.FC = () => {
       loadPrices();
     }
     loadProducts();
-  }, [vendors]); */
+  }, [vendors]);
 
   let content = (
     <Column>
-      <ProductList products={products.slice(0, 20)} />
+      <ProductList products={products.slice(0, 30)} />
     </Column>
   );
 
@@ -86,20 +76,10 @@ const Catalogue: React.FC = () => {
   }
 
   return (
-    <Grid>
-      <Column lg={12}>
-        <Banner />
-      </Column>
-      <Column
-        style={{
-          marginBottom: '20px',
-          marginTop: '20px',
-        }}
-      >
-        <Title>Alimentación</Title>
-        {content}
-      </Column>
-    </Grid>
+    <>
+      <Title style={{ marginLeft: '20px' }}>Alimentación</Title>
+      {content}
+    </>
   );
 };
 

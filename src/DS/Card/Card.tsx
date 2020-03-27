@@ -31,7 +31,7 @@ const Card = styled.div<CardProps>`
 
 export const SmallCard = styled(Card)`
   width: 120px;
-  min-height: 150px;
+  min-height: 130px;
   padding: 15px 10px;
 
   /* Extra Small Devices */

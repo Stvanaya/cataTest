@@ -5,6 +5,8 @@ const globalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.color.bg};
     padding-top: 60px;
+    font-family: ${({ theme }) => theme.font.family};
+    font-size: ${({ theme }) => theme.font.sizeSM};
   }
 `;
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 interface TextProps {
   align?: string;
   isBold?: boolean;
+  isUpperCase?: boolean;
   isXXS?: boolean;
   margin?: string;
   padding?: string;
@@ -16,10 +17,11 @@ const Text = styled.p<TextProps>`
   font-size: ${({ theme }) => theme.font.sizeSM};
   color: ${({ theme }) => theme.color.navy};
   text-align: ${({ align }) => align || 'left'};
-  line-height: normal;
-  letter-spacing: normal;
   margin: ${({ margin }) => margin || '0px'};
   padding: ${({ padding }) => padding || '0px'};
+  text-transform: ${({ isUpperCase }) => isUpperCase && 'uppercase'};
+  line-height: normal;
+  letter-spacing: normal;
 `;
 
 export const SmallText = styled(Text)`

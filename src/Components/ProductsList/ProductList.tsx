@@ -25,6 +25,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
           default_image={product.default_image}
           name={product.name}
           price={calcProductPrice(product)}
+          variation={product.fields.product_variation.value}
         />
       ))}
     </ProductListStyles>

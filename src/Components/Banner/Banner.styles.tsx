@@ -8,7 +8,7 @@ interface BannerProps {
 const Banner = styled.article<BannerProps>`
   width: calc(100% - 60px);
   max-height: 200px;
-  min-height: 100px;
+  min-height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;

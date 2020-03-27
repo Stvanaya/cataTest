@@ -39,5 +39,6 @@ export default {
   },
   misc: {
     bRadius: '5px',
+    grayBorder: '1px solid #e6ebf1',
   },
 };

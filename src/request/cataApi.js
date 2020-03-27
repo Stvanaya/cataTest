@@ -15,3 +15,7 @@ export function getProducts (url) {
 export function getPrices (url) {
   return cataApi.get(url);
 };
+
+export function getCategories (url) {
+  return cataApi.get(url);
+};
