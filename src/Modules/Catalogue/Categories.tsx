@@ -1,40 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { useDispatch, useSelector } from 'react-redux';
 
-/* DS */
 import CategoryList from 'Components/CategoryList/CategoryList';
+import Error from 'DS/Error/Error';
+import { TitleH4 } from 'DS/Title/Title';
 
-/* TYPES */
 import CategoryType from 'types/categories';
 
-/* REQUESTS */
-import { getCategories } from 'request/cataApi';
+import {
+  asyncFetchCategories,
+  setSelectedCategory,
+} from 'Store/cata/actionsCreators/categories';
 
 interface CategoriesProps {}
 
+interface RootState {
+  categoriesState: {
+    isError: boolean;
+    isLoading: boolean;
+    categories: CategoryType[];
+    selectedCategory: CategoryType;
+  };
+}
+
 const Categories: React.FC<CategoriesProps> = () => {
-  /* This code should be replace by dispatch actions usign Redux */
-  const [categories, setCategories] = useState<CategoryType[]>([]);
-  const [selectedCategory, setSelected] = useState<CategoryType>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useDispatch();
+  const { categories, selectedCategory, isLoading, isError } = useSelector(
+    (state: RootState) => state.categoriesState,
+  );
 
   useEffect(() => {
-    async function fetchCategories() {
-      const { data: categoriesRes } = await getCategories('category');
-      setCategories(categoriesRes);
-      setSelected(categoriesRes[0]);
-      setLoading(false);
-    }
-
-    fetchCategories();
+    dispatch(asyncFetchCategories());
   }, []);
 
   const handleClickCategory = (category: CategoryType): void => {
-    setSelected(category);
+    dispatch(setSelectedCategory(category));
   };
 
-  if (loading) {
-    return <Skeleton width="100%" height="200px" />;
+  if (isLoading) {
+    return <Skeleton width="100%" height="30px" count={5} />;
+  }
+
+  if (isError) {
+    return (
+      <Error>
+        <TitleH4>Algo salió mal</TitleH4>
+      </Error>
+    );
   }
 
   return (

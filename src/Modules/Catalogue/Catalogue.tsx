@@ -1,84 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { useSelector, useDispatch } from 'react-redux';
 
-/* COMPONENTS */
 import Column from 'DS/Layout/Column';
 import ProductList from 'Components/ProductsList/ProductList';
-import Title from 'DS/Title/Title';
+import Title, { TitleH4 } from 'DS/Title/Title';
+import Error from 'DS/Error/Error';
 
-/* TYPES */
-import ProductType, { ProductPrice } from 'types/product';
-import VendorType from 'types/vendors';
+import ProductType from 'types/product';
+import CategoryType from 'types/categories';
 
-/* REQUESTS */
-import { getPrices, getProducts, getVendors } from '../../request/cataApi';
+import {
+  asyncFetchVendorsProducts,
+  asyncSetFilterProducts,
+} from 'Store/cata/actionsCreators/catalogue';
 
+interface RootState {
+  categoriesState: {
+    categories: CategoryType[];
+    selectedCategory: CategoryType;
+  };
+  catalogueState: {
+    isError: boolean;
+    isLoading: boolean;
+    products: ProductType[];
+    productsFilter: ProductType[];
+    vendors: any;
+  };
+}
 const Catalogue: React.FC = () => {
-  const [vendors, setVendors] = useState<VendorType[]>([]);
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { categoriesState, catalogueState } = useSelector(
+    (state: RootState) => state,
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function loadVendors() {
-      const { data } = await getVendors('vendor');
-      setVendors(data);
-    }
-
-    loadVendors();
+    dispatch(asyncFetchVendorsProducts());
   }, []);
 
   useEffect(() => {
-    async function loadProducts() {
-      const { data: productsRes } = await getProducts('product');
-
-      async function loadPrices() {
-        if (vendors.length) {
-          const { data: pricesRes } = await getPrices(
-            `vendor/${vendors[0].uuid}/prices`,
-          );
-
-          const mergedProducts = (productsRes as Array<ProductType>).map(
-            product =>
-              Object.assign(
-                product,
-                (pricesRes as Array<ProductPrice>).find(
-                  price => product.uuid === price.uuid,
-                ),
-              ),
-          );
-
-          setProducts(mergedProducts);
-          setLoading(false);
-        }
-      }
-
-      loadPrices();
+    if (categoriesState.selectedCategory) {
+      dispatch(asyncSetFilterProducts(categoriesState.selectedCategory.id));
     }
-    loadProducts();
-  }, [vendors]);
+  }, [categoriesState.selectedCategory]);
 
-  let content = (
-    <Column>
-      <ProductList products={products.slice(0, 30)} />
-    </Column>
-  );
+  if (catalogueState.isLoading) {
+    return <Skeleton width="100%" height="200px" />;
+  }
 
-  if (loading) {
-    content = (
-      <Column
-        style={{
-          marginTop: '20px',
-        }}
-      >
-        <Skeleton width="100%" height="200px" />
-      </Column>
+  if (catalogueState.isError) {
+    return (
+      <Error>
+        <TitleH4>Algo salió mal</TitleH4>
+      </Error>
     );
   }
 
   return (
     <>
-      <Title style={{ marginLeft: '20px' }}>Alimentación</Title>
-      {content}
+      <Column>
+        <Title>
+          {categoriesState.selectedCategory
+            ? categoriesState.selectedCategory.name
+            : 'Productos'}
+        </Title>
+        <ProductList
+          products={
+            categoriesState.selectedCategory
+              ? catalogueState.productsFilter
+              : catalogueState.products
+          }
+        />
+      </Column>
     </>
   );
 };

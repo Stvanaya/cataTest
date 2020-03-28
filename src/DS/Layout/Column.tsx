@@ -12,6 +12,8 @@ interface ColumnProps {
 }
 
 const Column = styled.div<ColumnProps>`
+  margin-bottom: 20px;
+
   /* Extra Small Devices */
   @media (max-width: 576.98px) {
     & {
@@ -37,6 +39,7 @@ const Column = styled.div<ColumnProps>`
   @media (min-width: 992px) and (max-width: 1199.98px) {
     & {
       grid-column: ${({ lg }) => (lg ? `span ${lg}` : 'span 12')};
+      margin-bottom: 30px;
     }
   }
 
@@ -44,6 +47,7 @@ const Column = styled.div<ColumnProps>`
   @media (min-width: 1200px) {
     & {
       grid-column: ${({ xlg }) => (xlg ? `span ${xlg}` : 'span 12')};
+      margin-bottom: 40px;
     }
   }
 `;

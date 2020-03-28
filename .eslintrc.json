@@ -21,7 +21,8 @@
     "arrow-parens": "off",
     "no-confusing-arrow": "off",
     "implicit-arrow-linebreak": "off",
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "react": {

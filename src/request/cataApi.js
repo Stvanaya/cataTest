@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const cataApi = axios.create({
+export const cataApi = axios.create({
   baseURL: 'http://180.150.24.215:3006/api/',
 });
 

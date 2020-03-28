@@ -6,6 +6,7 @@ const Grid = styled.div`
   grid-template-rows: auto;
   justify-content: center;
   align-content: center;
+  column-gap: 20px;
 
   /* Extra Small Devices */
   @media (max-width: 576.98px) {
@@ -39,6 +40,7 @@ const Grid = styled.div`
   @media (min-width: 1200px) {
     & {
       grid-template-columns: ${({ theme }) => theme.layout.grid.xlg};
+      column-gap: 30px;
     }
   }
 `;

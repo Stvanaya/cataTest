@@ -7,7 +7,7 @@ const ProductList = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    margin: 15px 10px;
+    margin: 15px 5px;
   }
 `;
 

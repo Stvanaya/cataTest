@@ -32,7 +32,6 @@ const Catalogue: React.FC<CatalogueProps> = () => {
           xlg={9}
           style={{
             marginBottom: '20px',
-            marginTop: '20px',
           }}
         >
           <CatalogueContainer />

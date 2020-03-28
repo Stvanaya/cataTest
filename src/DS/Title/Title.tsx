@@ -26,4 +26,14 @@ export const TitleH2 = styled(Title).attrs(() => ({
   }
 `;
 
+export const TitleH4 = styled(Title).attrs(() => ({
+  as: 'h4',
+}))`
+  font-size: ${({ theme }) => theme.font.sizeXMD};
+
+  @media (max-width: 576.98px) {
+    font-size: ${({ theme }) => theme.font.sizeMD};
+  }
+`;
+
 export default Title;

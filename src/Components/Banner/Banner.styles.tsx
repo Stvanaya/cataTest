@@ -19,7 +19,7 @@ const Banner = styled.article<BannerProps>`
   background-color: ${({ theme }) => theme.color.primary};
   background-size: cover;
   padding: 30px 30px;
-  margin: 30px 0;
+  margin: 30px 0 0 0;
 
   & > p {
     color: ${({ theme }) => theme.color.navy};

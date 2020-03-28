@@ -30,11 +30,11 @@ export default {
   },
   layout: {
     grid: {
-      xs: 'repeat(12, calc(((100vw - 20px) / 12)))',
-      sm: 'repeat(12, calc(((100vw - 50px) / 12)))',
-      md: 'repeat(12, calc(((100vw - 80px) / 12)))',
-      lg: 'repeat(12, calc(((100vw - 240px) / 12)))',
-      xlg: 'repeat(12, calc(((100vw - 280px) / 12)))',
+      xs: 'repeat(12, calc(((100vw - 240px) / 12)))',
+      sm: 'repeat(12, calc(((100vw - 310px) / 12)))',
+      md: 'repeat(12, calc(((100vw - 320px) / 12)))',
+      lg: 'repeat(12, calc(((100vw - 420px) / 12)))',
+      xlg: 'repeat(12, calc(((100vw - 600px) / 12)))',
     },
   },
   misc: {
