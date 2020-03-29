@@ -7,27 +7,13 @@ import ProductList from 'Components/ProductsList/ProductList';
 import Title, { TitleH4 } from 'DS/Title/Title';
 import Error from 'DS/Error/Error';
 
-import ProductType from 'types/product';
-import CategoryType from 'types/categories';
+import { RootState } from 'types/store';
 
 import {
   asyncFetchVendorsProducts,
   asyncSetFilterProducts,
 } from 'Store/cata/actionsCreators/catalogue';
 
-interface RootState {
-  categoriesState: {
-    categories: CategoryType[];
-    selectedCategory: CategoryType;
-  };
-  catalogueState: {
-    isError: boolean;
-    isLoading: boolean;
-    products: ProductType[];
-    productsFilter: ProductType[];
-    vendors: any;
-  };
-}
 const Catalogue: React.FC = () => {
   const { categoriesState, catalogueState } = useSelector(
     (state: RootState) => state,

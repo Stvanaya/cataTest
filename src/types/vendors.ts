@@ -2,7 +2,7 @@ export type BasicIdentifiers = {
   id: number;
   uuid: string;
   identifier: string;
-}
+};
 
 export type Vendor = {
   color_hex: string;
@@ -11,7 +11,7 @@ export type Vendor = {
   minimum_purchase: number;
   maximum_purchase: number;
   images: string[];
-}
+};
 
 type VendorInfo = Vendor & BasicIdentifiers;
 

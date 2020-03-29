@@ -7,6 +7,7 @@ import Error from 'DS/Error/Error';
 import { TitleH4 } from 'DS/Title/Title';
 
 import CategoryType from 'types/categories';
+import { RootState } from 'types/store';
 
 import {
   asyncFetchCategories,
@@ -15,19 +16,10 @@ import {
 
 interface CategoriesProps {}
 
-interface RootState {
-  categoriesState: {
-    isError: boolean;
-    isLoading: boolean;
-    categories: CategoryType[];
-    selectedCategory: CategoryType;
-  };
-}
-
 const Categories: React.FC<CategoriesProps> = () => {
   const dispatch = useDispatch();
-  const { categories, selectedCategory, isLoading, isError } = useSelector(
-    (state: RootState) => state.categoriesState,
+  const { categoriesState, catalogueState } = useSelector(
+    (state: RootState) => state,
   );
 
   useEffect(() => {
@@ -35,14 +27,16 @@ const Categories: React.FC<CategoriesProps> = () => {
   }, []);
 
   const handleClickCategory = (category: CategoryType): void => {
-    dispatch(setSelectedCategory(category));
+    if (!catalogueState.isLoading) {
+      dispatch(setSelectedCategory(category));
+    }
   };
 
-  if (isLoading) {
+  if (categoriesState.isLoading) {
     return <Skeleton width="100%" height="30px" count={5} />;
   }
 
-  if (isError) {
+  if (categoriesState.isError) {
     return (
       <Error>
         <TitleH4>Algo salió mal</TitleH4>
@@ -53,9 +47,9 @@ const Categories: React.FC<CategoriesProps> = () => {
   return (
     <CategoryList
       fullWidth
-      categories={categories}
+      categories={categoriesState.categories}
       title="categorías"
-      selected={selectedCategory}
+      selected={categoriesState.selectedCategory}
       clickHandler={handleClickCategory}
     />
   );
