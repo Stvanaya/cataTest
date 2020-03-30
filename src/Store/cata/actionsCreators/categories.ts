@@ -10,6 +10,8 @@ import {
   SET_ERROR_CATEGORY,
 } from 'Store/cata/actions';
 
+import { categories } from 'mock';
+
 export const saveCategories = (categories: CategoryType[]) => {
   return {
     type: SAVE_CATEGORIES,
@@ -36,6 +38,7 @@ export const asyncFetchCategories = () => {
         (category: any) => category.fk_parent_category !== null,
       );
       dispatch(saveCategories(removedParent));
+      dispatch(setSelectedCategory(removedParent[0]));
       dispatch(setLoading(SET_LOADING_CATEGORY, false));
     } catch (error) {
       dispatch(setError(SET_ERROR_CATEGORY, true));

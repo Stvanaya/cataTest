@@ -11,9 +11,8 @@ import {
   SET_PRODUCTS_FILTER,
 } from 'Store/cata/actions';
 
-/* import { products } from 'mock'; */
-
 export const saveProducts = (products: ProductType[]) => {
+  console.log(products, "ENTRO AQUI")
   return {
     type: SAVE_PRODUCTS,
     value: {
@@ -44,12 +43,14 @@ export const asyncSetFilterProducts = (categoryId: number) => {
   return async (dispatch: any, getState: any) => {
     try {
       const { catalogueState } = getState();
-      const filter = await catalogueState.products.filter(
+      const filter = catalogueState.products.filter(
         (product: ProductType) => product.fk_category === categoryId,
       );
       dispatch(setProductsFilter(filter));
+      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
     } catch (error) {
-      console.log(error);
+      dispatch(setError(SET_ERROR_CATALOGUE, true));
+      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
     }
   };
 };
@@ -59,18 +60,17 @@ export const asyncFetchProductsWithPrices = (vendorUuid: string) => {
     try {
       const { data: products } = await cataApi.get('product');
       const { data: prices } = await cataApi.get(`vendor/${vendorUuid}/prices`);
-      const mergedProducts = await (products as Array<ProductType>).map(
-        product =>
-          Object.assign(
-            product,
-            (prices as Array<ProductPrice>).find(
-              price => product.uuid === price.uuid,
-            ),
+      const mergedProducts = (products as Array<ProductType>).map(product =>
+        Object.assign(
+          product,
+          (prices as Array<ProductPrice>).find(
+            price => product.uuid === price.uuid,
           ),
+        ),
       );
 
       dispatch(saveProducts(mergedProducts));
-      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      dispatch(asyncSetFilterProducts(1));
     } catch (error) {
       dispatch(setError(SET_ERROR_CATALOGUE, true));
       dispatch(setLoading(SET_LOADING_CATALOGUE, false));
@@ -85,7 +85,8 @@ export const asyncFetchVendorsProducts = () => {
       dispatch(saveVendors(data));
       dispatch(asyncFetchProductsWithPrices(data[0].uuid));
     } catch (error) {
-      console.log(error);
+      dispatch(setError(SET_ERROR_CATALOGUE, true));
+      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
     }
   };
 };

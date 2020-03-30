@@ -9,6 +9,7 @@ interface ButtonProps {
   padding?: string;
   typeBtn: ButtonType;
   isQuantityBtn?: boolean;
+  fullWidth?: boolean;
 }
 
 const ButtonPrimaryStyles = css`
@@ -36,6 +37,7 @@ const Button = styled.button<ButtonProps>`
   padding: ${({ padding }) => padding || '10px 12px'};
   margin: ${({ margin }) => margin || '0px'};
   min-width: 100px;
+  width: ${({ fullWidth }) => fullWidth && '100%'};
   border: none;
   border-radius: ${({ theme }) => theme.misc.bRadius};
   outline: none;

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Column from 'DS/Layout/Column';
 import ProductList from 'Components/ProductsList/ProductList';
+import Column from 'DS/Layout/Column';
 import Title, { TitleH4 } from 'DS/Title/Title';
 import Error from 'DS/Error/Error';
 
@@ -28,7 +28,7 @@ const Catalogue: React.FC = () => {
     if (categoriesState.selectedCategory) {
       dispatch(asyncSetFilterProducts(categoriesState.selectedCategory.id));
     }
-  }, [categoriesState.selectedCategory]);
+  }, [categoriesState.selectedCategory, catalogueState.products]);
 
   if (catalogueState.isLoading) {
     return <Skeleton width="100%" height="200px" />;
@@ -45,18 +45,8 @@ const Catalogue: React.FC = () => {
   return (
     <>
       <Column>
-        <Title>
-          {categoriesState.selectedCategory
-            ? categoriesState.selectedCategory.name
-            : 'Productos'}
-        </Title>
-        <ProductList
-          products={
-            categoriesState.selectedCategory
-              ? catalogueState.productsFilter
-              : catalogueState.products
-          }
-        />
+        <Title>{categoriesState.selectedCategory.name}</Title>
+        <ProductList products={catalogueState.productsFilter} />
       </Column>
     </>
   );

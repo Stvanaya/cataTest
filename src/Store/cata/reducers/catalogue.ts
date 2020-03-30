@@ -1,4 +1,4 @@
-import ProductType from 'types/product';
+import { CatalogueState, UIStates } from 'types/store';
 
 import {
   SAVE_PRODUCTS,
@@ -8,15 +8,7 @@ import {
   SET_PRODUCTS_FILTER,
 } from 'Store/cata/actions';
 
-interface InitialState {
-  isError: boolean;
-  isLoading: boolean;
-  products: ProductType[];
-  productsFilter: ProductType[];
-  vendors: any;
-}
-
-const initialState: InitialState = {
+const initialState: CatalogueState & UIStates = {
   isError: false,
   isLoading: true,
   products: [],
@@ -26,7 +18,7 @@ const initialState: InitialState = {
 
 type Action = {
   type: string;
-  value: InitialState;
+  value: CatalogueState & UIStates;
 };
 
 const catalogueReducer = (state = initialState, action: Action) => {

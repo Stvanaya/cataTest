@@ -1,22 +1,19 @@
 import React from 'react';
 
-/* COMPONENTS */
 import Product from 'Components/Product/Product';
+import Button from 'DS/Button/Button';
+import withPagination from 'hoc/withPagination';
 
-/* UTILS */
 import calcProductPrice from 'utils/calcProductPrice';
-
-/* TYPES */
 import ProductType from 'types/product';
-
-/* STYLES */
 import ProductListStyles from './ProductList.styles';
 
 interface ProductListProps {
   products: ProductType[];
+  hasMore?: boolean;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products }) => {
+const ProductList: React.FC<ProductListProps> = ({ products, hasMore }) => {
   return (
     <ProductListStyles>
       {products.map(product => (
@@ -28,8 +25,13 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
           variation={product.fields.product_variation.value}
         />
       ))}
+      {hasMore && (
+        <Button typeBtn="primary" fullWidth style={{ marginTop: '20px' }}>
+          Ver más
+        </Button>
+      )}
     </ProductListStyles>
   );
 };
 
-export default ProductList;
+export default withPagination(ProductList);
