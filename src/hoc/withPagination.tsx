@@ -17,7 +17,7 @@ function withPagination<T extends Props>(Wrapped: React.ComponentType<T>) {
     useEffect(() => {
       const initialProducts = [
         ...props.products.slice(0, page * productPerPage),
-      ]
+      ];
 
       if (initialProducts.length < props.products.length) {
         setCurrentProducts(initialProducts);
@@ -39,6 +39,7 @@ function withPagination<T extends Props>(Wrapped: React.ComponentType<T>) {
     return (
       <Wrapped
         hasMore={hasMore}
+        currentProducts={currentProducts}
         page={page}
         {...props}
         nextPageHandler={nextPageHandler}

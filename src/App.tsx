@@ -4,12 +4,11 @@ import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 
 import Header from 'DS/Header/Header';
+import Footer from 'DS/Footer/Footer';
 import Router from 'Pages/index';
 
-/* STORE */
 import store from 'Store/store';
 
-/* STYLES */
 import GlobalStyles from 'GlobalStyles';
 import theme from 'theme/theme';
 
@@ -21,6 +20,7 @@ const App: React.FC = () => {
           <GlobalStyles />
           <Header />
           <Router />
+          <Footer />
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

@@ -6,6 +6,7 @@ const ErrorComponent = styled.div`
   height: 200px;
   background-color: ${({ theme }) => theme.color.white};
   border: ${({ theme }) => theme.misc.grayBorder};
+  border-radius: ${({ theme }) => theme.misc.bRadius};
   display: flex;
   flex-direction: column;
   justify-content: center;

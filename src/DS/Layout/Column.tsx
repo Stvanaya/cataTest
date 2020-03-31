@@ -1,18 +1,25 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import styled from 'styled-components';
 
+import { CommonStyles } from 'types/styles';
+
 type ColumnValidRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-interface ColumnProps {
+interface ColumnProps extends CommonStyles {
   xs?: ColumnValidRange;
   sm?: ColumnValidRange;
   md?: ColumnValidRange;
   lg?: ColumnValidRange;
   xlg?: ColumnValidRange;
+  horAlign?: string;
+  verAlign?: string;
 }
 
 const Column = styled.div<ColumnProps>`
-  margin-bottom: 20px;
+  margin: ${({ margin }) => margin || '0px'};
+  padding: ${({ padding }) => padding || '0px'};
+  justify-self: ${({ horAlign }) => horAlign || 'unset'};
+  align-self: ${({ verAlign }) => verAlign || 'unset'};
 
   /* Extra Small Devices */
   @media (max-width: 576.98px) {
@@ -39,7 +46,6 @@ const Column = styled.div<ColumnProps>`
   @media (min-width: 992px) and (max-width: 1199.98px) {
     & {
       grid-column: ${({ lg }) => (lg ? `span ${lg}` : 'span 12')};
-      margin-bottom: 30px;
     }
   }
 
@@ -47,7 +53,6 @@ const Column = styled.div<ColumnProps>`
   @media (min-width: 1200px) {
     & {
       grid-column: ${({ xlg }) => (xlg ? `span ${xlg}` : 'span 12')};
-      margin-bottom: 40px;
     }
   }
 `;

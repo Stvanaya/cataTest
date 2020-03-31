@@ -11,29 +11,19 @@ import Banner from 'Components/Banner/Banner';
 import Grid from 'DS/Layout/Grid';
 import Column from 'DS/Layout/Column';
 
-interface CatalogueProps {
-
-}
+interface CatalogueProps {}
 
 const Catalogue: React.FC<CatalogueProps> = () => {
   return (
     <>
       <Grid>
-        <Column>
+        <Column margin="0 0 30px 0">
           <Banner />
         </Column>
-        <Column xs={12} sm={12} lg={3} xlg={3}>
+        <Column xs={12} sm={12} lg={3} xlg={3} margin="0 0 30px 0">
           <CategoriesContainer />
         </Column>
-        <Column
-          xs={12}
-          sm={12}
-          lg={9}
-          xlg={9}
-          style={{
-            marginBottom: '20px',
-          }}
-        >
+        <Column xs={12} sm={12} lg={9} xlg={9} margin="0 0 30px 0">
           <CatalogueContainer />
         </Column>
       </Grid>

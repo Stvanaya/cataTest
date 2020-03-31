@@ -13,6 +13,13 @@ const Dropdown = styled.div<DropdownProps>`
   border: ${({ theme }) => theme.misc.grayBorder};
   border-radius: ${({ theme }) => theme.misc.bRadius};
   overflow: hidden;
+
+  /* Extra Small Devices */
+  @media (max-width: 576.98px) {
+    & {
+      width: 100%;
+    }
+  }
 `;
 
 export default Dropdown;

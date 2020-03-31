@@ -1,31 +1,18 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface IconProps {
-  isIconQuantity?: boolean;
-  isQuantityDisabled?: boolean;
+import { Color, CommonStyles } from 'types/styles';
+
+interface IconProps extends CommonStyles {
+  size?: string;
+  color: Color;
 }
-const IconQuantityDisabled = css`
-  cursor: not-allowed;
-  background-color: ${({ theme }) => theme.color.disabledBlue};
-  color: ${({ theme }) => theme.color.white};
-`;
 
-const IconQuantity = css`
-  background-color: ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.misc.bRadius};
-  color: ${({ theme }) => theme.color.white};
-`;
-
-const Icon = styled.span<IconProps>`
-  width: 17px;
-  height: 17px;
-  padding: 5px;
-  color: white;
-  text-align: center;
-
-  ${({ isIconQuantity }) => isIconQuantity && IconQuantity};
-  ${({ isQuantityDisabled }) => isQuantityDisabled && IconQuantityDisabled};
+const Icon = styled.i<IconProps>`
+  font-size: ${({ size }) => size || '16px'};
+  color: ${({ theme, color }) => theme.color[color] || theme.color.navy};
+  margin: ${({ margin }) => margin || '5px'};
+  padding: ${({ padding }) => padding || '0'};
+  text-decoration: none;
 `;
 
 export default Icon;
