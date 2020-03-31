@@ -8,29 +8,36 @@ interface Props {
 }
 
 function withPagination<T extends Props>(Wrapped: React.ComponentType<T>) {
-  return (props: T) => {
+  return function Pagination(props: T) {
     const [currentProducts, setCurrentProducts] = useState<Product[]>([]);
     const [page, setPage] = useState(1);
-    const [productPerPage, setProductPerPage] = useState(20);
+    const [productPerPage] = useState(20);
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
-      const initialProducts = [
-        ...props.products.slice(0, page * productPerPage),
-      ];
+      const initialProducts = [...props.products.slice(0, 1 * productPerPage)];
+
+      console.log(props, 'PROPS');
 
       if (initialProducts.length < props.products.length) {
         setCurrentProducts(initialProducts);
         setPage(1);
+        setHasMore(true);
       } else {
         setHasMore(false);
       }
     }, [props.products]);
 
     const nextPageHandler = () => {
+      const nextProducts = [
+        ...props.products.slice(0, (page + 1) * productPerPage),
+      ];
+
       if (currentProducts.length < props.products.length) {
+        if (nextProducts.length >= props.products.length) setHasMore(false);
+
         setPage(p => p + 1);
-        setCurrentProducts([...props.products.slice(0, page * productPerPage)]);
+        setCurrentProducts(nextProducts);
       } else {
         setHasMore(false);
       }
@@ -38,10 +45,10 @@ function withPagination<T extends Props>(Wrapped: React.ComponentType<T>) {
 
     return (
       <Wrapped
-        hasMore={hasMore}
-        currentProducts={currentProducts}
-        page={page}
         {...props}
+        hasMore={hasMore}
+        products={currentProducts}
+        page={page}
         nextPageHandler={nextPageHandler}
       />
     );

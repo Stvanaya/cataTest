@@ -13,6 +13,7 @@ interface ProductProps {
   price: string;
   default_image: string;
   variation: string | null;
+  content: any;
 }
 
 const Product: React.FC<ProductProps> = ({
@@ -20,11 +21,15 @@ const Product: React.FC<ProductProps> = ({
   default_image: defaultImage,
   variation,
   price,
+  content,
 }) => (
   <SmallCard flexVerAlign>
     <Image src={defaultImage} alt="Product Alt" width="70px" height="70px" />
     <ProductContent>
       <SmallText align="center" isXXS margin="15px 0 7px 0">
+        {content}
+      </SmallText>
+      <SmallText align="center" isXXS margin="0 0 7px 0">
         {name} {variation}
       </SmallText>
       <SmallText align="center" isBold margin="0 0 10px 0">

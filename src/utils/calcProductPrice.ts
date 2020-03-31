@@ -9,11 +9,11 @@ const calcProductPrice = (product: ProductType): string => {
   const { purchase_type: purchaseType, price, limits } = product;
 
   if (purchaseType === 'u') {
-    const pricePerUnit = Number(price.unit) * Number(limits.min);
+    const pricePerUnit = Math.ceil(Number(price.unit) * Number(limits.min));
     return formatMoney(pricePerUnit);
   }
 
-  const pricePerWeight = Number(price.weight) * Number(limits.min);
+  const pricePerWeight = Math.ceil(Number(price.weight) * Number(limits.min));
   return formatMoney(pricePerWeight);
 };
 

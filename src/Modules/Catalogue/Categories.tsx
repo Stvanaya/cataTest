@@ -13,6 +13,7 @@ import {
   asyncFetchCategories,
   setSelectedCategory,
 } from 'Store/cata/actionsCreators/categories';
+import { asyncSetFilterProducts } from 'Store/cata/actionsCreators/catalogue';
 
 interface CategoriesProps {}
 
@@ -29,6 +30,7 @@ const Categories: React.FC<CategoriesProps> = () => {
   const handleClickCategory = (category: CategoryType): void => {
     if (!catalogueState.isLoading) {
       dispatch(setSelectedCategory(category));
+      dispatch(asyncSetFilterProducts(category.id));
     }
   };
 

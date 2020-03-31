@@ -22,7 +22,8 @@
     "no-confusing-arrow": "off",
     "implicit-arrow-linebreak": "off",
     "react/prop-types": [0],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "function-paren-newline": "off"
   },
   "settings": {
     "react": {
@@ -30,9 +31,7 @@
       "version": "detect"
     },
     "parser": "typescript-eslint-parser",
-    "plugins": [
-      "import"
-    ],
+    "plugins": ["import"],
     "import/resolver": {
       "typescript": {}
     }

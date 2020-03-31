@@ -1,6 +1,6 @@
 import { cataApi } from 'request/cataApi';
 
-import ProductType, { ProductPrice } from 'types/product';
+import Product from 'types/product';
 
 import { setLoading, setError } from 'Store/cata/actionsCreators/global';
 import {
@@ -10,9 +10,10 @@ import {
   SET_ERROR_CATALOGUE,
   SET_PRODUCTS_FILTER,
 } from 'Store/cata/actions';
+import mergedProductsPrices from 'utils/mergedProductPrices';
+import filterProdByCategory from 'utils/filterProdByCategory';
 
-export const saveProducts = (products: ProductType[]) => {
-  console.log(products, "ENTRO AQUI")
+export const saveProducts = (products: Product[]) => {
   return {
     type: SAVE_PRODUCTS,
     value: {
@@ -30,7 +31,7 @@ export const saveVendors = (vendors: any) => {
   };
 };
 
-export const setProductsFilter = (productsFilter: ProductType[]) => {
+export const setProductsFilter = (productsFilter: Product[]) => {
   return {
     type: SET_PRODUCTS_FILTER,
     value: {
@@ -40,53 +41,65 @@ export const setProductsFilter = (productsFilter: ProductType[]) => {
 };
 
 export const asyncSetFilterProducts = (categoryId: number) => {
-  return async (dispatch: any, getState: any) => {
-    try {
-      const { catalogueState } = getState();
-      const filter = catalogueState.products.filter(
-        (product: ProductType) => product.fk_category === categoryId,
-      );
-      dispatch(setProductsFilter(filter));
-      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
-    } catch (error) {
-      dispatch(setError(SET_ERROR_CATALOGUE, true));
-      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
-    }
+  return (dispatch: any, getState: any) => {
+    const { catalogueState } = getState();
+    filterProdByCategory(catalogueState.products, categoryId)
+      .then(productsFilter => {
+        console.log(productsFilter, 'Producttos filtrados');
+        dispatch(setProductsFilter(productsFilter));
+        dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      })
+      .catch(() => {
+        dispatch(setError(SET_ERROR_CATALOGUE, true));
+        dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      });
+  };
+};
+
+export const asyncFetchPrices = (products: Product[], vendorUuid: string) => {
+  return (dispatch: any, getState: any) => {
+    const { categoriesState } = getState();
+    cataApi
+      .get(`vendor/${vendorUuid}/prices`)
+      .then(({ data: prices }) => {
+        return mergedProductsPrices(products, prices);
+      })
+      .then(mergedProducts => {
+        dispatch(saveProducts(mergedProducts));
+        dispatch(asyncSetFilterProducts(categoriesState.categories[0].id));
+      })
+      .catch(() => {
+        dispatch(setError(SET_ERROR_CATALOGUE, true));
+        dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      });
   };
 };
 
 export const asyncFetchProductsWithPrices = (vendorUuid: string) => {
   return async (dispatch: any) => {
-    try {
-      const { data: products } = await cataApi.get('product');
-      const { data: prices } = await cataApi.get(`vendor/${vendorUuid}/prices`);
-      const mergedProducts = (products as Array<ProductType>).map(product =>
-        Object.assign(
-          product,
-          (prices as Array<ProductPrice>).find(
-            price => product.uuid === price.uuid,
-          ),
-        ),
-      );
-
-      dispatch(saveProducts(mergedProducts));
-      dispatch(asyncSetFilterProducts(1));
-    } catch (error) {
-      dispatch(setError(SET_ERROR_CATALOGUE, true));
-      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
-    }
+    cataApi
+      .get('product')
+      .then(({ data: products }) => {
+        dispatch(asyncFetchPrices(products, vendorUuid));
+      })
+      .catch(() => {
+        dispatch(setError(SET_ERROR_CATALOGUE, true));
+        dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      });
   };
 };
 
 export const asyncFetchVendorsProducts = () => {
-  return async (dispatch: any) => {
-    try {
-      const { data } = await cataApi.get('vendor');
-      dispatch(saveVendors(data));
-      dispatch(asyncFetchProductsWithPrices(data[0].uuid));
-    } catch (error) {
-      dispatch(setError(SET_ERROR_CATALOGUE, true));
-      dispatch(setLoading(SET_LOADING_CATALOGUE, false));
-    }
+  return (dispatch: any) => {
+    cataApi
+      .get('vendor')
+      .then(({ data }) => {
+        dispatch(saveVendors(data));
+        dispatch(asyncFetchProductsWithPrices(data[0].uuid));
+      })
+      .catch(() => {
+        dispatch(setError(SET_ERROR_CATALOGUE, true));
+        dispatch(setLoading(SET_LOADING_CATALOGUE, false));
+      });
   };
 };

@@ -9,10 +9,7 @@ import Error from 'DS/Error/Error';
 
 import { RootState } from 'types/store';
 
-import {
-  asyncFetchVendorsProducts,
-  asyncSetFilterProducts,
-} from 'Store/cata/actionsCreators/catalogue';
+import { asyncFetchVendorsProducts } from 'Store/cata/actionsCreators/catalogue';
 
 const Catalogue: React.FC = () => {
   const { categoriesState, catalogueState } = useSelector(
@@ -23,12 +20,6 @@ const Catalogue: React.FC = () => {
   useEffect(() => {
     dispatch(asyncFetchVendorsProducts());
   }, []);
-
-  useEffect(() => {
-    if (categoriesState.selectedCategory) {
-      dispatch(asyncSetFilterProducts(categoriesState.selectedCategory.id));
-    }
-  }, [categoriesState.selectedCategory, catalogueState.products]);
 
   if (catalogueState.isLoading) {
     return <Skeleton width="100%" height="200px" />;
@@ -52,4 +43,4 @@ const Catalogue: React.FC = () => {
   );
 };
 
-export default React.memo(Catalogue);
+export default Catalogue;
