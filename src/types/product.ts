@@ -1,5 +1,5 @@
 export type PurchaseType = 'w' | 'u';
-export type UnitMeasure = 'g' | 'u';
+export type UnitMeasure = 'gr' | 'u';
 
 export type ProductFields = {
   product_content: {

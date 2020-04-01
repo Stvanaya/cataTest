@@ -16,11 +16,9 @@ function withPagination<T extends Props>(Wrapped: React.ComponentType<T>) {
 
     useEffect(() => {
       const initialProducts = [...props.products.slice(0, 1 * productPerPage)];
-
-      console.log(props, 'PROPS');
+      setCurrentProducts(initialProducts);
 
       if (initialProducts.length < props.products.length) {
-        setCurrentProducts(initialProducts);
         setPage(1);
         setHasMore(true);
       } else {

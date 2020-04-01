@@ -1,21 +1,5 @@
 import axios from 'axios';
 
 export const cataApi = axios.create({
-  baseURL: 'http://180.150.24.215:3006/api/',
+  baseURL: 'https://staging.api.munitienda.com/cata/v1/',
 });
-
-export function getVendors (url) {
-  return cataApi.get(url);
-}
-
-export function getProducts (url) {
-  return cataApi.get(url);
-}
-
-export function getPrices (url) {
-  return cataApi.get(url);
-};
-
-export function getCategories (url) {
-  return cataApi.get(url);
-};
